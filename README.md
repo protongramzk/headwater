@@ -74,6 +74,13 @@ hw scan ./src -o final.css
 
 This typically reduces CSS size by 80-90% compared to full utility frameworks.
 
+## Requirements
+
+- **Node.js 14.13.1 or higher** (ESM support required)
+- Modern JavaScript environment with ES Modules
+
+HeadWater is built as a pure ES Module package for better performance and modern JavaScript compatibility.
+
 ## Installation
 
 ```bash
@@ -84,6 +91,12 @@ Or use it directly without installation:
 
 ```bash
 npx @uniantaradev/headwater init
+```
+
+For project-specific installation:
+
+```bash
+npm install --save-dev @uniantaradev/headwater
 ```
 
 ## Quick Start
@@ -242,10 +255,10 @@ Compiles to standard CSS with all utilities resolved.
 
 ## Programmatic API
 
-Use HeadWater in your Node.js scripts:
+Use HeadWater in your Node.js scripts (ESM):
 
 ```javascript
-const { HeadWaterGen, HWCompiler, cssToObject } = require('headwater-cli/headwater');
+import { HeadWaterGen, HWCompiler, cssToObject } from '@uniantaradev/headwater';
 
 // Generate CSS
 const css = HeadWaterGen.generateCSS({
@@ -258,6 +271,12 @@ const compiler = new HWCompiler();
 const result = compiler.compile(hwcSource, baseCss);
 
 console.log(result.css);
+```
+
+For CommonJS projects, use dynamic import:
+
+```javascript
+const { HeadWaterGen, HWCompiler } = await import('@uniantaradev/headwater');
 ```
 
 ## Why HeadWater?
@@ -289,6 +308,7 @@ Configuration-driven generation ensures consistent output across environments. O
 | Build-free mode | Yes | No | Yes |
 | Tree-shaking | Yes | Yes | Partial |
 | JIT compilation | No | Yes | No |
+| ESM Native | Yes | No | No |
 
 ## Performance
 
@@ -314,6 +334,24 @@ All modern browsers supporting CSS custom properties:
 
 No polyfills required.
 
+## Documentation
+
+Full documentation available at:
+- CLI Reference: [docs/CLI.md](docs/CLI.md)
+- HWC Language: [docs/HWC.md](docs/HWC.md)
+- API Reference: [docs/API.md](docs/API.md)
+
+## Examples
+
+Check the `examples/` directory for:
+- Landing page with `hw.css`
+- React app with custom build
+- Component library using HWC
+- Production optimization workflow
+
+## Contributing
+
+Contributions welcome. Please read CONTRIBUTING.md before submitting PRs.
 
 ## License
 
@@ -321,7 +359,7 @@ MIT License - see LICENSE file for details.
 
 ## Links
 
-- GitHub: https://github.com/yourusername/headwater
+- GitHub: https://github.com/uniantaradev/headwater
 - Documentation: https://headwater.dev
-- NPM: https://npmjs.com/package/headwater-cli
-- Issues: https://github.com/yourusername/headwater/issues
+- NPM: https://npmjs.com/package/@uniantaradev/headwater
+- Issues: https://github.com/uniantaradev/headwater/issues
