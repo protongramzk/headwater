@@ -1,0 +1,25 @@
+{
+    "name": "@uniantaradev/headwater",
+    "version": "1.0.2",
+    "description": "HeadWater CSS utility generator and compiler",
+    "main": "headwater.js",
+    "bin": {
+        "hw": "main.js"
+    },
+    "files": [
+        "headwater.js",
+        "commands.js"
+    ],
+    "keywords": [
+        "css",
+        "utility",
+        "headwater"
+    ],
+    "type":"module",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^5.6.2",
+        "commander": "^14.0.2",
+        "glob": "^13.0.0"
+    }
+}
