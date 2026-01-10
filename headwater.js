@@ -1,5 +1,3 @@
-// generators/index.js
-// generators/colors.js
 class Color {
     static hexToRgb(hexColor) {
         hexColor = hexColor.replace('#', '');
@@ -46,7 +44,6 @@ class Color {
 class Sizing {
     static generateSizing(limit = 20, step = 0.25) {
         let css = "/* --- Sizing System (Width & Height) --- */\n";
-        // Fixed & Relative Sizing
         for (let i = 0; i <= limit; i++) {
             const value = i * step;
             css += `.w-${i} { width: ${value}rem; }\n`;
@@ -54,7 +51,6 @@ class Sizing {
             css += `.min-w-${i} { min-width: ${value}rem; }\n`;
             css += `.min-h-${i} { min-height: ${value}rem; }\n`;
         }
-        // Percentage & Special Sizing
         const fractions = {
             '1/2': '50%', '1/3': '33.333333%', '2/3': '66.666667%',
             '1/4': '25%', '3/4': '75%', 'full': '100%', 'screen': '100vw'
@@ -74,10 +70,8 @@ class Sizing {
 class Positioning {
     static generatePositioning(limit = 10, step = 0.25) {
         let css = "/* --- Positioning System --- */\n";
-        // Position types
         const types = ['static', 'fixed', 'absolute', 'relative', 'sticky'];
         types.forEach(t => css += `.${t} { position: ${t}; }\n`);
-        // Insets (Top, Right, Bottom, Left)
         for (let i = 0; i <= limit; i++) {
             const value = i * step;
             css += `.top-${i} { top: ${value}rem; }\n`;
@@ -86,7 +80,6 @@ class Positioning {
             css += `.left-${i} { left: ${value}rem; }\n`;
             css += `.inset-${i} { top: ${value}rem; right: ${value}rem; bottom: ${value}rem; left: ${value}rem; }\n`;
         }
-        // Z-Index
         const zIndexes = [0, 10, 20, 30, 40, 50, 'auto'];
         zIndexes.forEach(z => {
             css += `.z-${z} { z-index: ${z}; }\n`;
@@ -97,8 +90,6 @@ class Positioning {
 class Effects {
     static generateEffects() {
         let css = "/* --- Effects System --- */\n";
-        // 1. Box Shadows
-        // Kita bisa tambahkan lebih banyak level atau variasi warna shadow jika perlu
         css += `
 .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
 .shadow { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
@@ -109,13 +100,10 @@ class Effects {
 .shadow-inner { box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05); }
 .shadow-none { box-shadow: none; }
 `;
-        // 2. Opacity
-        // Generasi opacity dari 0% sampai 100% dengan step 10 atau 25
         const opacities = [0, 5, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 95, 100];
         opacities.forEach(o => {
             css += `.opacity-${o} { opacity: ${o / 100}; }\n`;
         });
-        // 3. Transitions
         css += `
 .transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 .transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
@@ -134,33 +122,25 @@ class Effects {
 .ease-out { transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
 .ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
 `;
-        // 4. Transforms (Skala, Rotasi, Translate)
-        // Untuk transform ini, biasanya lebih kompleks karena butuh kombinasi.
-        // Kita bisa sediakan utilitas dasar untuk setiap transform property.
-        // Contoh sederhana:
-        for (let i = 0; i <= 100; i += 50) { // Skala dari 0.5x, 1x, 1.5x, 2x
+        for (let i = 0; i <= 100; i += 50) { 
             css += `.scale-${i} { transform: scale(${i / 100}); }\n`;
         }
-        // Tambah untuk scale-x, scale-y juga
         for (let i = 0; i <= 100; i += 50) {
             css += `.scale-x-${i} { transform: scaleX(${i / 100}); }\n`;
             css += `.scale-y-${i} { transform: scaleY(${i / 100}); }\n`;
         }
-        // Rotate (derajat)
-        const rotateDegrees = [0, 1, 2, 3, 6, 12, 45, 90, 180]; // Positif dan negatif
+        const rotateDegrees = [0, 1, 2, 3, 6, 12, 45, 90, 180]; 
         rotateDegrees.forEach(deg => {
             css += `.rotate-${deg} { transform: rotate(${deg}deg); }\n`;
-            css += `.-rotate-${deg} { transform: rotate(-${deg}deg); }\n`; // Versi negatif
+            css += `.-rotate-${deg} { transform: rotate(-${deg}deg); }\n`; 
         });
-        // Translate (perluasan dari Spacing)
-        for (let i = 0; i <= 10; i++) { // Mirip spacing 0.25rem
+        for (let i = 0; i <= 10; i++) { 
             const val = i * 0.25;
             css += `.translate-x-${i} { transform: translateX(${val}rem); }\n`;
             css += `.-translate-x-${i} { transform: translateX(-${val}rem); }\n`;
             css += `.translate-y-${i} { transform: translateY(${val}rem); }\n`;
             css += `.-translate-y-${i} { transform: translateY(-${val}rem); }\n`;
         }
-        // Tambah juga untuk translate full
         css += `.translate-x-full { transform: translateX(100%); }\n`;
         css += `.-translate-x-full { transform: translateX(-100%); }\n`;
         css += `.translate-y-full { transform: translateY(100%); }\n`;
@@ -168,7 +148,6 @@ class Effects {
         return css;
     }
 }
-// generators/spacing.js
 class Spacing {
     static generateSpacing(limit = 20, step = 0.25) {
         let css = "/* --- Spacing System (Padding & Margin) --- */\n";
@@ -189,7 +168,6 @@ class Spacing {
         return css;
     }
 }
-// generators/flex.js
 class Flex {
     static generateFlex() {
         let css = "/* --- Flexbox System --- */\n";
@@ -212,7 +190,6 @@ class Flex {
         return css;
     }
 }
-// generators/grid.js
 class Grid {
     static generateGrid() {
         let css = " /* --- Grid System --- */\n";
@@ -230,7 +207,6 @@ class Grid {
         return css;
     }
 }
-// generators/typography.js
 class Typography {
     static generateTypography() {
         let css = "/* --- Typography System --- */\n";
@@ -253,7 +229,6 @@ class Typography {
 class Border {
     static generateBorder() {
         let css = "/* --- Border System --- */\n";
-        // Border width
         const widths = [0, 1, 2, 4, 8];
         widths.forEach(w => {
             css += `.border-${w} { border-width: ${w}px; }\n`;
@@ -262,10 +237,8 @@ class Border {
             css += `.border-b-${w} { border-bottom-width: ${w}px; }\n`;
             css += `.border-l-${w} { border-left-width: ${w}px; }\n`;
         });
-        // Border style
         const styles = ['solid', 'dashed', 'dotted', 'double', 'none'];
         styles.forEach(s => css += `.border-${s} { border-style: ${s}; }\n`);
-        // Border radius
         const radii = {
             'none': '0px', 'sm': '0.125rem', 'DEFAULT': '0.25rem',
             'md': '0.375rem', 'lg': '0.5rem', 'xl': '0.75rem',
@@ -291,10 +264,8 @@ class Display {
             const val = d === 'hidden' ? 'none' : d;
             css += `.${d} { display: ${val}; }\n`;
         });
-        // Visibility
         css += `.visible { visibility: visible; }\n`;
         css += `.invisible { visibility: hidden; }\n`;
-        // Overflow
         const overflows = ['auto', 'hidden', 'visible', 'scroll'];
         overflows.forEach(o => {
             css += `.overflow-${o} { overflow: ${o}; }\n`;
@@ -307,7 +278,6 @@ class Display {
 class Filters {
     static generateFilters() {
         let css = "/* --- Filters & Effects --- */\n";
-        // Blur
         const blurs = {
             'none': '0', 'sm': '4px', 'DEFAULT': '8px',
             'md': '12px', 'lg': '16px', 'xl': '24px', '2xl': '40px'
@@ -317,12 +287,10 @@ class Filters {
             css += `.blur${suffix} { filter: blur(${val}); }\n`;
             css += `.backdrop-blur${suffix} { backdrop-filter: blur(${val}); }\n`;
         }
-        // Brightness
         const brightness = [0, 50, 75, 90, 95, 100, 105, 110, 125, 150, 200];
         brightness.forEach(b => {
             css += `.brightness-${b} { filter: brightness(${b / 100}); }\n`;
         });
-        // Grayscale
         css += `.grayscale { filter: grayscale(100%); }\n`;
         css += `.grayscale-0 { filter: grayscale(0%); }\n`;
         return css;
@@ -331,7 +299,6 @@ class Filters {
 class Animation {
     static generateAnimations() {
         let css = "/* --- Animations --- */\n";
-        // Keyframes
         css += `
 @keyframes spin {
   to { transform: rotate(360deg); }
@@ -347,7 +314,6 @@ class Animation {
   50% { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
 }
 `;
-        // Animation classes
         const animations = {
             'spin': 'spin 1s linear infinite',
             'ping': 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
@@ -366,10 +332,8 @@ class Interaction {
         const cursors = ['auto', 'default', 'pointer', 'wait', 'text',
             'move', 'help', 'not-allowed', 'none', 'grab', 'grabbing'];
         cursors.forEach(c => css += `.cursor-${c} { cursor: ${c}; }\n`);
-        // Pointer events
         css += `.pointer-events-none { pointer-events: none; }\n`;
         css += `.pointer-events-auto { pointer-events: auto; }\n`;
-        // User select
         css += `.select-none { user-select: none; }\n`;
         css += `.select-text { user-select: text; }\n`;
         css += `.select-all { user-select: all; }\n`;
@@ -380,7 +344,6 @@ class Interaction {
 class Media {
     static generateMedia() {
         let css = "/* --- Media Utilities --- */\n";
-        // Aspect ratio
         const ratios = {
             'auto': 'auto', 'square': '1/1', 'video': '16/9',
             'portrait': '3/4', 'wide': '21/9'
@@ -388,10 +351,8 @@ class Media {
         for (const [key, val] of Object.entries(ratios)) {
             css += `.aspect-${key} { aspect-ratio: ${val}; }\n`;
         }
-        // Object fit
         const fits = ['contain', 'cover', 'fill', 'none', 'scale-down'];
         fits.forEach(f => css += `.object-${f} { object-fit: ${f}; }\n`);
-        // Object position
         const positions = ['bottom', 'center', 'left', 'right', 'top'];
         positions.forEach(p => css += `.object-${p} { object-position: ${p}; }\n`);
         return css;
@@ -406,7 +367,6 @@ class FlexExtended {
             css += `.gap-x-${i} { column-gap: ${value}rem; }\n`;
             css += `.gap-y-${i} { row-gap: ${value}rem; }\n`;
         }
-        // Flex wrap
         css += `.flex-wrap { flex-wrap: wrap; }\n`;
         css += `.flex-nowrap { flex-wrap: nowrap; }\n`;
         css += `.flex-wrap-reverse { flex-wrap: wrap-reverse; }\n`;
@@ -424,7 +384,6 @@ class Gradient {
         for (const [key, val] of Object.entries(directions)) {
             css += `.bg-gradient-${key} { background-image: linear-gradient(${val}, var(--tw-gradient-stops)); }\n`;
         }
-        // Gradient color stops untuk setiap warna di colorMap
         for (const [name, hexVal] of Object.entries(colorMap)) {
             css += `.from-${name} { --tw-gradient-from: ${hexVal}; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent); }\n`;
             css += `.via-${name} { --tw-gradient-stops: var(--tw-gradient-from), ${hexVal}, var(--tw-gradient-to, transparent); }\n`;
@@ -445,8 +404,6 @@ class Breakpoints {
         };
         for (const [name, width] of Object.entries(breakpoints)) {
             css += `@media (min-width: ${width}) {\n`;
-            // Di sini Anda bisa regenerate semua utility dengan prefix
-            // Contoh: .sm:flex { display: flex; }
             css += `}\n`;
         }
         return css;
@@ -455,7 +412,6 @@ class Breakpoints {
 class TypographyExtended {
     static generateAdvancedTypography() {
         let css = "/* --- Advanced Typography --- */\n";
-        // Line height
         const lineHeights = {
             'none': '1', 'tight': '1.25', 'snug': '1.375',
             'normal': '1.5', 'relaxed': '1.625', 'loose': '2'
@@ -463,7 +419,6 @@ class TypographyExtended {
         for (const [key, val] of Object.entries(lineHeights)) {
             css += `.leading-${key} { line-height: ${val}; }\n`;
         }
-        // Letter spacing
         const tracking = {
             'tighter': '-0.05em', 'tight': '-0.025em', 'normal': '0em',
             'wide': '0.025em', 'wider': '0.05em', 'widest': '0.1em'
@@ -471,11 +426,9 @@ class TypographyExtended {
         for (const [key, val] of Object.entries(tracking)) {
             css += `.tracking-${key} { letter-spacing: ${val}; }\n`;
         }
-        // Text decoration
         css += `.underline { text-decoration-line: underline; }\n`;
         css += `.line-through { text-decoration-line: line-through; }\n`;
         css += `.no-underline { text-decoration-line: none; }\n`;
-        // Text transform
         css += `.uppercase { text-transform: uppercase; }\n`;
         css += `.lowercase { text-transform: lowercase; }\n`;
         css += `.capitalize { text-transform: capitalize; }\n`;
@@ -483,7 +436,6 @@ class TypographyExtended {
         return css;
     }
 }
-// generators/reset.js
 class Reset {
     static generateReset() {
         return `                                      
@@ -583,24 +535,18 @@ ul, ol {
 `;
     }
 }
-// generators/shadows.js
 class HeadWaterGen {
-    // Default color map
     static defaultColorMap = {
-        // Grayscale
         white: '#ffffff',
         black: '#000000',
         gray: '#6b7280',
-        // Primary colors
         primary: '#3b82f6',
         secondary: '#8b5cf6',
         accent: '#06b6d4',
-        // Semantic colors
         success: '#10b981',
         warning: '#f59e0b',
         danger: '#ef4444',
         info: '#3b82f6',
-        // Additional colors
         red: '#ef4444',
         orange: '#f97316',
         amber: '#f59e0b',
@@ -619,7 +565,6 @@ class HeadWaterGen {
         pink: '#ec4899',
         rose: '#f43f5e'
     };
-    // Map generator names ke generator methods
     static generators = {
         'reset': () => Reset.generateReset(),
         'colors': (colorMap) => Color.generateColors(colorMap),
@@ -648,12 +593,10 @@ class HeadWaterGen {
         const normalizedIgnore = ignore.map(i => i.startsWith('-') ? i.slice(1) : i);
         let resetCSS = '';
         let baseCSS = '';
-        // 1️⃣ RESET (selalu duluan)
         if (!normalizedIgnore.includes('reset') &&
             (include === null || include.includes('reset'))) {
             resetCSS = this.generators.reset();
         }
-        // 2️⃣ BASE
         for (const [name, generator] of Object.entries(this.generators)) {
             if (name === 'reset')
                 continue;
@@ -673,15 +616,12 @@ class HeadWaterGen {
                 console.error(`Error generating ${name}:`, err);
             }
         }
-        // 3️⃣ INTERACTIVE (turunan dari base)
         let interactiveCSS = '';
         if (interactive) {
             const interactiveOptions = typeof interactive === 'object' ? interactive : {};
             interactiveCSS = this.generateInteractive(cssToObject(baseCSS), interactiveOptions);
         }
-        // 4️⃣ Gabung urutan final
         let css = resetCSS + baseCSS + interactiveCSS;
-        // 5️⃣ Post-processing
         if (!comments) {
             css = css.replace(/\/\*[\s\S]*?\*\//g, '');
         }
@@ -692,7 +632,6 @@ class HeadWaterGen {
     }
     static generateInteractive(baseCss, options = {}) {
         const { ignore = [], only = null, groupHover = false, darkMode = false } = options;
-        // Define all available variants
         const allVariants = {
             'hover': (selector, rules) => this._generateVariant(selector, 'hover', rules, ':hover'),
             'focus': (selector, rules) => this._generateVariant(selector, 'focus', rules, ':focus'),
@@ -707,18 +646,14 @@ class HeadWaterGen {
             'odd': (selector, rules) => this._generateVariant(selector, 'odd', rules, ':nth-child(odd)'),
             'even': (selector, rules) => this._generateVariant(selector, 'even', rules, ':nth-child(even)'),
         };
-        // Add group-hover if enabled
         if (groupHover) {
             allVariants['group-hover'] = (selector, rules) => this._generateGroupVariant(selector, 'group-hover', rules, ':hover');
         }
-        // Add dark mode if enabled
         if (darkMode) {
             allVariants['dark'] = (selector, rules) => this._generateDarkVariant(selector, 'dark', rules);
         }
-        // Determine which variants to generate
         let activeVariants = {};
         if (only && Array.isArray(only)) {
-            // Only generate specified variants
             only.forEach(variant => {
                 if (allVariants[variant]) {
                     activeVariants[variant] = allVariants[variant];
@@ -726,13 +661,11 @@ class HeadWaterGen {
             });
         }
         else {
-            // Generate all except ignored
             activeVariants = { ...allVariants };
             ignore.forEach(variant => {
                 delete activeVariants[variant];
             });
         }
-        // Generate CSS
         let css = '/* --- Interactive Variants --- */\n\n';
         for (const [variantName, generator] of Object.entries(activeVariants)) {
             css += `/* ${variantName} */\n`;
@@ -764,35 +697,30 @@ class HeadWaterGen {
     static _escapeSelector(str) {
         return str.replace(/:/g, '\\:').replace(/\//g, '\\/');
     }
-    // Helper method untuk minify
     static minifyCSS(css) {
         return css
-            .replace(/\/\*[\s\S]*?\*\//g, '') // Hapus comment
-            .replace(/\s+/g, ' ') // Collapse whitespace
-            .replace(/\s*{\s*/g, '{') // Hapus spasi di sekitar {
-            .replace(/\s*}\s*/g, '}') // Hapus spasi di sekitar }
-            .replace(/\s*:\s*/g, ':') // Hapus spasi di sekitar :
-            .replace(/\s*;\s*/g, ';') // Hapus spasi di sekitar ;
-            .replace(/;\s*}/g, '}') // Hapus semicolon terakhir sebelum }
+            .replace(/\/\*[\s\S]*?\*\//g, '') 
+            .replace(/\s+/g, ' ') 
+            .replace(/\s*{\s*/g, '{') 
+            .replace(/\s*}\s*/g, '}') 
+            .replace(/\s*:\s*/g, ':') 
+            .replace(/\s*;\s*/g, ';') 
+            .replace(/;\s*}/g, '}') 
             .trim();
     }
-    // Helper method untuk get size dengan options
     static getSize(options = {}) {
         const css = this.generateCSS(options);
         return sizeCalculate(css);
     }
-    // Helper method untuk list available generators
     static listGenerators() {
         return Object.keys(this.generators);
     }
-    // Helper method untuk generate hanya specific generators
     static generateOnly(generatorNames, options = {}) {
         return this.generateCSS({
             ...options,
             include: Array.isArray(generatorNames) ? generatorNames : [generatorNames]
         });
     }
-    // Helper method untuk generate semua kecuali specific generators
     static generateExcept(generatorNames, options = {}) {
         return this.generateCSS({
             ...options,
@@ -800,7 +728,6 @@ class HeadWaterGen {
         });
     }
 }
-// Fungsi untuk membandingkan ukuran dengan berbagai konfigurasi
 function compareGeneratorSizes(colorMap = {}) {
     const generators = HeadWaterGen.listGenerators();
     const results = [];
@@ -814,9 +741,7 @@ function compareGeneratorSizes(colorMap = {}) {
             formatted: size.formatted
         });
     });
-    // Sort by size descending
     results.sort((a, b) => b.size - a.size);
-    // Print results
     results.forEach((r, i) => {
         console.log(`${i + 1}. ${r.generator.padEnd(20)} - ${r.formatted}`);
     });
@@ -824,7 +749,6 @@ function compareGeneratorSizes(colorMap = {}) {
     console.log(`\nTotal: ${totalSize.formatted}`);
     return results;
 }
-// Fungsi untuk generate report lengkap
 function generateReport(options = {}) {
     const fullCSS = HeadWaterGen.generateCSS(options);
     const fullSize = sizeCalculate(fullCSS);
@@ -858,7 +782,6 @@ function generateReport(options = {}) {
     };
     return report;
 }
-// Pretty print report
 function printReport(options = {}) {
     const report = generateReport(options);
     console.log('\n╔══════════════════════════════════════╗');
@@ -881,9 +804,7 @@ function printReport(options = {}) {
 }
 function cssToObject(css) {
     const result = {};
-    // hapus komentar
     css = css.replace(/\/\*[\s\S]*?\*\//g, "");
-    // match .class { ... }
     const blocks = css.matchAll(/\.([a-zA-Z0-9-_]+)\s*\{([^}]+)\}/g);
     for (const match of blocks) {
         const className = match[1];
@@ -923,15 +844,10 @@ function getCategorized(cssObj, prefixMap) {
     return result;
 }
 function sizeCalculate(str) {
-    // Hitung ukuran dalam bytes
-    // Setiap karakter dalam JavaScript string adalah UTF-16, 
-    // tapi kita hitung sebagai UTF-8 untuk lebih akurat
     const bytes = new Blob([str]).size;
-    // Konversi ke berbagai unit
     const kb = bytes / 1024;
     const mb = kb / 1024;
     const gb = mb / 1024;
-    // Tentukan unit yang paling sesuai
     let size, unit;
     if (gb >= 1) {
         size = gb;
@@ -949,7 +865,6 @@ function sizeCalculate(str) {
         size = bytes;
         unit = 'Bytes';
     }
-    // Return object dengan berbagai informasi
     return {
         bytes: bytes,
         kb: parseFloat(kb.toFixed(2)),
@@ -960,10 +875,6 @@ function sizeCalculate(str) {
         unit: unit
     };
 }
-// ============================================
-// HWC COMPILER - HeadWater Component Compiler
-// ============================================
-// 1. TOKEN TYPES
 const TokenType = {
     IDENT: 'IDENT',
     SELECTOR: 'SELECTOR',
@@ -974,7 +885,6 @@ const TokenType = {
     EOF: 'EOF',
     COMMENT: 'COMMENT'
 };
-// 2. LEXER (Tokenizer)
 class Lexer {
     constructor(input) {
         this.input = input;
@@ -1020,7 +930,6 @@ class Lexer {
     }
     nextToken() {
         this.skipWhitespace();
-        // Skip comments
         while (this.skipComment()) {
             this.skipWhitespace();
         }
@@ -1030,7 +939,6 @@ class Lexer {
         const ch = this.peek();
         const line = this.line;
         const col = this.col;
-        // Single character tokens
         if (ch === '=') {
             this.advance();
             return { type: TokenType.EQUALS, value: '=', line, col };
@@ -1047,13 +955,11 @@ class Lexer {
             this.advance();
             return { type: TokenType.DOLLAR, value: '$', line, col };
         }
-        // Selector (starts with . or #)
         if (ch === '.' || ch === '#') {
             const prefix = this.advance();
             const ident = this.readIdent();
             return { type: TokenType.SELECTOR, value: prefix + ident, line, col };
         }
-        // Identifier
         if (/[a-zA-Z0-9_-]/.test(ch)) {
             const ident = this.readIdent();
             return { type: TokenType.IDENT, value: ident, line, col };
@@ -1072,7 +978,6 @@ class Lexer {
         return tokens;
     }
 }
-// 3. AST NODE TYPES
 class ASTNode {
     constructor(type) {
         this.type = type;
@@ -1097,7 +1002,6 @@ class RuleNode extends ASTNode {
         this.col = col;
     }
 }
-// 4. PARSER
 class Parser {
     constructor(tokens) {
         this.tokens = tokens;
@@ -1125,11 +1029,9 @@ class Parser {
     }
     parseStatement() {
         const token = this.peek();
-        // Mixin declaration: $name = ...;
         if (token.type === TokenType.DOLLAR) {
             return this.parseMixinDecl();
         }
-        // Rule declaration: selector = ...;
         if (token.type === TokenType.SELECTOR || token.type === TokenType.IDENT) {
             return this.parseRuleDecl();
         }
@@ -1156,16 +1058,14 @@ class Parser {
         let variant = null;
         const line = token.line;
         const col = token.col;
-        // Read base selector
         if (token.type === TokenType.SELECTOR) {
             selector = this.advance().value;
         }
         else if (token.type === TokenType.IDENT) {
             selector = this.advance().value;
         }
-        // Check for variant (e.g., :hover)
         if (this.peek().type === TokenType.COLON) {
-            this.advance(); // consume ':'
+            this.advance(); 
             const variantToken = this.expect(TokenType.IDENT);
             variant = variantToken.value;
         }
@@ -1176,7 +1076,7 @@ class Parser {
         while (this.peek().type === TokenType.IDENT ||
             this.peek().type === TokenType.DOLLAR) {
             if (this.peek().type === TokenType.DOLLAR) {
-                this.advance(); // consume '$'
+                this.advance(); 
                 const name = this.expect(TokenType.IDENT);
                 utilities.push('$' + name.value);
             }
@@ -1188,11 +1088,10 @@ class Parser {
         return utilities;
     }
 }
-// 5. COMPILER
 class HWCompiler {
     constructor(options = {}) {
         this.options = {
-            warnings: options.warnings !== false, // default true
+            warnings: options.warnings !== false, 
             strict: options.strict || false,
             ...options
         };
@@ -1202,24 +1101,19 @@ class HWCompiler {
     }
     compile(source, baseCssObject = {}) {
         try {
-            // Stage 1: Lexing
             const lexer = new Lexer(source);
             const tokens = lexer.tokenize();
-            // Stage 2: Parsing
             const parser = new Parser(tokens);
             const ast = parser.parse();
-            // Stage 3: Mixin Collection
             this.collectMixins(ast);
-            // Stage 4: Mixin Expansion & Compilation
             const rules = this.processRules(ast, baseCssObject);
-            // Stage 5: CSS Emission
             const css = this.emitCSS(rules);
             return {
                 success: this.errors.length === 0,
                 css,
                 warnings: this.warnings,
                 errors: this.errors,
-                ast // untuk debugging
+                ast 
             };
         }
         catch (error) {
@@ -1246,15 +1140,11 @@ class HWCompiler {
         const rulesMap = new Map();
         for (const node of ast) {
             if (node.type === 'Rule') {
-                // Expand mixins
                 const expandedUtilities = this.expandMixins(node.utilities, node.line);
-                // Resolve utilities to CSS properties
                 const cssProps = this.resolveUtilities(expandedUtilities, baseCssObject, node.line);
-                // Build selector key
                 const selectorKey = node.variant
                     ? `${node.selector}:${node.variant}`
                     : node.selector;
-                // Merge if selector already exists
                 if (rulesMap.has(selectorKey)) {
                     const existing = rulesMap.get(selectorKey);
                     rulesMap.set(selectorKey, { ...existing, ...cssProps });
@@ -1271,7 +1161,6 @@ class HWCompiler {
         for (const util of utilities) {
             if (util.startsWith('$')) {
                 const mixinName = util.slice(1);
-                // Prevent infinite recursion
                 if (visited.has(mixinName)) {
                     this.error(`Circular mixin reference: $${mixinName} at line ${line}`);
                     continue;
@@ -1330,7 +1219,6 @@ class HWCompiler {
         this.errors.push(message);
     }
 }
-// 6. HELPER FUNCTION untuk convert cssToObject ke baseCssObject
 function cssObjectToBaseCSS(cssObj) {
     const base = {};
     for (const [className, rules] of Object.entries(cssObj)) {
@@ -1344,26 +1232,17 @@ const HeadWater = {
     cssToObject,
     sizeCalculate
 };
-
 (function (root, factory) {
     if (typeof exports === 'object' && typeof module !== 'undefined') {
-        // Node.js / CommonJS
         module.exports = factory();
     } else if (typeof define === 'function' && define.amd) {
-        // AMD
         define([], factory);
     } else {
-        // Browser Global
         root.HeadWater = factory();
     }
 })(typeof self !== 'undefined' ? self : (typeof global !== 'undefined' ? global : this), function () {
     const HeadWater = {
-        // Kodingan Utility kamu di sini
     };
-    
     return HeadWater;
 });
-
-// Tambahkan baris ini agar 'import' tidak error:
 export default (typeof module !== 'undefined' && module.exports) ? module.exports : HeadWater;
-
