@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Examples · HeadWater CSS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../dist/hw.css" />
+</head>
+<body class="bg-light text-dark font-sans">
+
+  <!-- HEADER -->
+  <header class="px-6 py-10 border-b">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <h1 class="text-2xl font-bold">
+        HeadWater Examples
+      </h1>
+      <nav class="flex gap-4 text-sm">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="download.html" class="hover:underline">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / CTA -->
+  <section class="px-6 py-16 text-center">
+    <h2 class="text-3xl font-bold mb-4">
+      Build fast. Stay intentional.
+    </h2>
+    <p class="text-gray max-w-xl mx-auto mb-8">
+      This page showcases common UI patterns built purely with HeadWater utilities.
+      No components. Just classes.
+    </p>
+
+    <div class="flex justify-center gap-4">
+      <button class="px-6 py-3 bg-primary text-white rounded
+                     hover:bg-blue active:opacity-80
+                     focus:ring-2 focus:ring-primary">
+        Get Started
+      </button>
+
+      <button class="px-6 py-3 border rounded
+                     hover:bg-dark hover:text-white
+                     active:opacity-80
+                     focus:ring-2 focus:ring-dark">
+        Learn More
+      </button>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="px-6 py-12 border-t">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-xl font-semibold mb-6">Typography</h3>
+
+      <div class="space-y-4">
+        <h1 class="text-4xl font-bold">Heading 1</h1>
+        <h2 class="text-3xl font-semibold">Heading 2</h2>
+        <h3 class="text-2xl font-medium">Heading 3</h3>
+
+        <p class="text-base text-gray max-w-2xl">
+          HeadWater typography utilities are predictable and minimal.
+          No opinionated styles, just clean defaults that scale with your system.
+        </p>
+
+        <p class="text-sm text-gray">
+          Small muted text for captions or helper descriptions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="px-6 py-12 border-t">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-xl font-semibold mb-6">Buttons</h3>
+
+      <div class="flex flex-wrap gap-4">
+        <button class="px-4 py-2 bg-primary text-white rounded
+                       hover:bg-blue active:opacity-80
+                       focus:ring-2 focus:ring-primary">
+          Primary
+        </button>
+
+        <button class="px-4 py-2 bg-success text-white rounded
+                       hover:opacity-90
+                       focus:ring-2 focus:ring-success">
+          Success
+        </button>
+
+        <button class="px-4 py-2 bg-danger text-white rounded
+                       hover:opacity-90
+                       focus:ring-2 focus:ring-danger">
+          Danger
+        </button>
+
+        <button class="px-4 py-2 border rounded
+                       hover:bg-dark hover:text-white
+                       focus:ring-2 focus:ring-dark">
+          Outline
+        </button>
+
+        <button class="px-4 py-2 text-gray underline
+                       hover:text-dark">
+          Text Button
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARD -->
+  <section class="px-6 py-12 border-t">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-xl font-semibold mb-6">Cards</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 border rounded hover:shadow-md">
+          <h4 class="font-semibold mb-2">Simple Card</h4>
+          <p class="text-sm text-gray mb-4">
+            A basic card layout using padding, border, and hover utilities.
+          </p>
+          <a href="#" class="text-sm text-primary hover:underline">
+            Read more →
+          </a>
+        </div>
+
+        <div class="p-5 border rounded hover:shadow-md bg-white">
+          <h4 class="font-semibold mb-2">Interactive Card</h4>
+          <p class="text-sm text-gray mb-4">
+            Hover and focus states are predictable and composable.
+          </p>
+          <button class="px-3 py-2 bg-primary text-white rounded
+                         hover:bg-blue
+                         focus:ring-2 focus:ring-primary">
+            Action
+          </button>
+        </div>
+
+        <div class="p-5 border rounded hover:shadow-md">
+          <h4 class="font-semibold mb-2">Muted Card</h4>
+          <p class="text-sm text-gray">
+            Perfect for dashboards, lists, and content previews.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="px-6 py-12 border-t">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-xl font-semibold mb-6">Form Elements</h3>
+
+      <form class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium mb-1">
+            Email address
+          </label>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            class="w-full px-4 py-2 border rounded
+                   focus:ring-2 focus:ring-primary
+                   focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">
+            Message
+          </label>
+          <textarea
+            rows="4"
+            placeholder="Write something..."
+            class="w-full px-4 py-2 border rounded
+                   focus:ring-2 focus:ring-primary
+                   focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="focus:ring-2 focus:ring-primary" />
+          <span class="text-sm text-gray">
+            I agree to the terms
+          </span>
+        </div>
+
+        <button
+          type="submit"
+          class="px-6 py-2 bg-primary text-white rounded
+                 hover:bg-blue
+                 focus:ring-2 focus:ring-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <footer class="px-6 py-12 border-t text-center">
+    <h3 class="text-2xl font-semibold mb-3">
+      Ready to use HeadWater?
+    </h3>
+    <p class="text-gray mb-6">
+      Download a build or generate your own configuration.
+    </p>
+
+    <div class="flex justify-center gap-4">
+      <a
+        href="download.html"
+        class="px-6 py-3 bg-dark text-white rounded
+               hover:opacity-90
+               focus:ring-2 focus:ring-dark">
+        Download
+      </a>
+
+      <a
+        href="index.html"
+        class="px-6 py-3 border rounded
+               hover:bg-dark hover:text-white
+               focus:ring-2 focus:ring-dark">
+        Back to Home
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
