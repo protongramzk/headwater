@@ -2,149 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>HeadWater CSS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HeadWater CSS — Utility-first, Generator-powered</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- HeadWater CSS -->
-  <link rel="stylesheet" href="../dist/hw.css" />
+  <link rel="stylesheet" href="hw.css" />
+
+  <style>
+    body { max-width: 1100px; margin: 0 auto; }
+    pre { background: #0f172a10; padding: 12px; border-radius: 10px; overflow-x: auto; }
+    .badge { font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+  </style>
 </head>
-<body class="bg-light text-dark font-sans">
+<body class="font-sans bg-light text-dark p-6">
 
   <!-- HERO -->
-  <header class="px-6 py-16 text-center border-b">
-    <h1 class="text-4xl font-bold mb-4">
-      HeadWater CSS 🌊
+  <header class="text-center py-12">
+    <span class="badge bg-primary text-white mb-4 inline-block">
+      Utility-first • Generator-powered • CSS-only
+    </span>
+
+    <h1 class="text-5xl font-bold mb-4">
+      HeadWater CSS
     </h1>
-    <p class="text-lg text-gray max-w-xl mx-auto mb-8">
-      A modular, build-based utility CSS framework.
-      Pick only what you need. No runtime. No noise.
+
+    <p class="text-lg text-gray max-w-3xl mx-auto mb-6">
+      A modern utility-first CSS framework with a built-in generator.
+      Use it instantly as CSS, or generate only what your project needs.
+      No runtime. No lock-in.
     </p>
 
-    <div class="flex justify-center gap-4 flex-wrap">
-      <a
-        href="examples.html"
-        class="px-6 py-3 bg-primary text-white rounded
-               hover:bg-blue
-               active:opacity-80
-               focus:ring-2 focus:ring-primary">
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="examples.html" class="px-6 py-3 bg-primary text-white rounded hover:bg-blue">
         View Examples
       </a>
-
-      <a
-        href="download.html"
-        class="px-6 py-3 border rounded
-               hover:bg-dark hover:text-white
-               active:opacity-80
-               focus:ring-2 focus:ring-dark">
+      <a href="download.html" class="px-6 py-3 border rounded hover:bg-dark hover:text-white">
         Download CSS
       </a>
-      
-            <a
-        href="https://github.com/protongramzk/headwater"
-        class="px-6 py-3 border rounded bg-dark-500 text-white
-               hover:bg-dark hover:text-white
-               active:opacity-80
-               focus:ring-2 focus:ring-dark">
-        Github
+      <a href="hwc.html" class="px-6 py-3 border rounded hover:bg-dark hover:text-white">
+        HWC Docs
+      </a>
+      <a href="https://github.com/protongramzk/headwater"
+         target="_blank"
+         class="px-6 py-3 border rounded hover:bg-dark hover:text-white">
+        GitHub
       </a>
     </div>
   </header>
 
-  <!-- FEATURES -->
-  <section class="px-6 py-14 max-w-5xl mx-auto">
-    <h2 class="text-2xl font-semibold text-center mb-10">
-      Why HeadWater?
-    </h2>
+  <!-- WHAT IS HEADWATER -->
+  <section class="py-10">
+    <h2 class="text-3xl font-semibold mb-4">What is HeadWater?</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <div class="p-5 border rounded hover:shadow-md">
-        <h3 class="text-lg font-semibold mb-2">Build-Based</h3>
-        <p class="text-sm text-gray">
-          Generate CSS from configuration.
-          No unused utilities sneaking into production.
-        </p>
-      </div>
-
-      <div class="p-5 border rounded hover:shadow-md">
-        <h3 class="text-lg font-semibold mb-2">Variant Aware</h3>
-        <p class="text-sm text-gray">
-          Hover, active, focus, ring, interactive states
-          generated only when you ask for them.
-        </p>
-      </div>
-
-      <div class="p-5 border rounded hover:shadow-md">
-        <h3 class="text-lg font-semibold mb-2">Size Control</h3>
-        <p class="text-sm text-gray">
-          Lite, Basic, Extra, or Max.
-          Your CSS size stays on a strict diet 🥗
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- VARIANTS -->
-  <section class="px-6 py-14 bg-white border-t">
-    <h2 class="text-2xl font-semibold text-center mb-10">
-      Available Builds
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-
-      <div class="p-4 border rounded">
-        <h3 class="font-semibold mb-1">LiteHW</h3>
-        <p class="text-sm text-gray">
-          Ultra-minimal. Active-only interaction.
-        </p>
-      </div>
-
-      <div class="p-4 border rounded">
-        <h3 class="font-semibold mb-1">Basic HW</h3>
-        <p class="text-sm text-gray">
-          Core colors, typography, and interactions.
-        </p>
-      </div>
-
-      <div class="p-4 border rounded">
-        <h3 class="font-semibold mb-1">Extra HW</h3>
-        <p class="text-sm text-gray">
-          Expanded colors and advanced typography.
-        </p>
-      </div>
-
-      <div class="p-4 border rounded">
-        <h3 class="font-semibold mb-1">Max HW</h3>
-        <p class="text-sm text-gray">
-          Full feature set. No compromises.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="px-6 py-16 text-center">
-    <h2 class="text-2xl font-semibold mb-4">
-      See it in action
-    </h2>
-    <p class="text-gray mb-8">
-      Explore real components and interaction states.
+    <p class="text-gray mb-4 max-w-3xl">
+      HeadWater is a utility-first CSS system inspired by modern workflows,
+      but designed to stay simple, portable, and build-time friendly.
+      You can ship it as-is, or generate a perfectly trimmed CSS bundle.
     </p>
 
-    <a
-      href="examples.html"
-      class="px-8 py-3 bg-primary text-white rounded
-             hover:bg-blue
-             focus:ring-2 focus:ring-primary">
-      Open Examples
-    </a>
+    <ul class="list-disc pl-6 text-gray space-y-2">
+      <li>⚡ Ready-to-use CSS utilities (spacing, layout, typography, ring, etc)</li>
+      <li>🧠 Generator engine to include only what you actually use</li>
+      <li>🎛️ Granular feature toggles (typography, ring, interactive, animations)</li>
+      <li>📦 Pure CSS output — works everywhere</li>
+    </ul>
+  </section>
+
+  <!-- HWC -->
+  <section class="py-10">
+    <h2 class="text-3xl font-semibold mb-4">HWC — HeadWater Components</h2>
+
+    <p class="text-gray max-w-3xl mb-4">
+      HWC is a lightweight component language built on top of HeadWater utilities.
+      It lets you define reusable components using class compositions,
+      then compile them into minimal CSS.
+    </p>
+
+    <pre><code>// button.hwc
+$btnBase = p-2 rounded inline-flex items-center
+
+.btn = $btnBase bg-primary text-white
+.btn:hover = bg-primary-700
+.input = p-2 border rounded focus:ring-2 focus:ring-primary
+</code></pre>
+
+    <p class="text-sm text-gray mt-3">
+      → Learn more in <a href="hwc.html" class="text-primary underline">HWC documentation</a>
+    </p>
+  </section>
+
+  <!-- CSS VARIANTS -->
+  <section class="py-10">
+    <h2 class="text-3xl font-semibold mb-6">CSS Variants</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="p-5 border rounded">
+        <h3 class="text-xl font-semibold mb-2">Lite HW</h3>
+        <p class="text-sm text-gray mb-2">
+          Ultra-minimal build for landing pages and small projects.
+        </p>
+        <ul class="text-sm text-gray list-disc pl-5">
+          <li>4 colors (primary, secondary, light, dark)</li>
+          <li>Very limited typography</li>
+          <li>Interactive: active only</li>
+          <li>Smallest possible size</li>
+        </ul>
+      </div>
+
+      <div class="p-5 border rounded">
+        <h3 class="text-xl font-semibold mb-2">Basic HW</h3>
+        <p class="text-sm text-gray mb-2">
+          Safe default for most projects.
+        </p>
+        <ul class="text-sm text-gray list-disc pl-5">
+          <li>7-color palette</li>
+          <li>Core typography</li>
+          <li>Interactive: hover, focus, active</li>
+          <li>No heavy features</li>
+        </ul>
+      </div>
+
+      <div class="p-5 border rounded">
+        <h3 class="text-xl font-semibold mb-2">Extra HW</h3>
+        <p class="text-sm text-gray mb-2">
+          Extended utilities without going fully heavy.
+        </p>
+        <ul class="text-sm text-gray list-disc pl-5">
+          <li>Full color palette</li>
+          <li>Typography + selected advanced features</li>
+          <li>Important interactive variants</li>
+          <li>Balanced size vs power</li>
+        </ul>
+      </div>
+
+      <div class="p-5 border rounded">
+        <h3 class="text-xl font-semibold mb-2">Max HW</h3>
+        <p class="text-sm text-gray mb-2">
+          Everything enabled. No compromises.
+        </p>
+        <ul class="text-sm text-gray list-disc pl-5">
+          <li>All colors</li>
+          <li>Full typography & advanced typography</li>
+          <li>All interactive variants</li>
+          <li>Animations, filters, gradients</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="py-10">
+    <h2 class="text-3xl font-semibold mb-4">Install via npm</h2>
+
+    <p class="text-gray mb-3">
+      Use HeadWater as a generator in your build process.
+    </p>
+
+    <pre><code>npm install @uniantaradev/headwater</code></pre>
+ <pre><code>hw init
+hw build
+hw scan .</code></pre>
+
+    <pre class="mt-3"><code>// generate css
+import { HeadWaterGen } from "@uniantaradev/headwater";
+
+const css = HeadWaterGen.generateCSS({
+  interactive: { only: ["hover", "focus"] },
+  typography: true,
+  typographyExtended: false
+});
+</code></pre>
   </section>
 
   <!-- FOOTER -->
-  <footer class="px-6 py-6 border-t text-center text-sm text-gray">
-    HeadWater CSS · Static · Configurable · No JS required 🌊
+  <footer class="py-10 border-t mt-10 text-center text-sm text-gray">
+    <p class="mb-2">
+      HeadWater is designed to grow with your project —
+      start simple, generate smarter, evolve safely.
+    </p>
+
+    <p>
+      © HeadWater • Built with clarity, not magic ✨
+    </p>
   </footer>
 
 </body>

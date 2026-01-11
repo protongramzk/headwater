@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HWC — HeadWater Component Syntax</title>
+
+  <!-- Use the HeadWater stylesheet (adjust path if needed) -->
+  <link rel="stylesheet" href="hw.css" />
+
+  <style>
+    /* Tiny page-specific helpers (keeps hw.css untouched) */
+    body { max-width: 1000px; margin: 36px auto; }
+    pre.code { background: #0f172a10; padding: 12px; border-radius: 8px; overflow:auto; }
+    .kbd { display:inline-block; padding:6px 10px; border-radius:6px; background:#eef2ff; font-family:monospace; font-size:13px; }
+  </style>
+</head>
+<body class="bg-light text-dark font-sans p-6">
+
+  <!-- HERO -->
+  <header class="mb-8 text-center">
+    <h1 class="text-4xl font-bold mb-2">HWC — HeadWater Component Syntax</h1>
+    <p class="text-base text-gray max-w-2xl mx-auto">
+      A tiny, convention-friendly format for reusable components built from HeadWater utility classes.
+      Write component definitions in `.hwc` files, compile to plain CSS, then drop into your project.
+    </p>
+  </header>
+
+  <!-- WHAT IS HWC -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">What is HWC?</h2>
+    <p class="text-sm text-gray mb-3">
+      HWC (HeadWater Classes) is a small, human-readable component language that maps component names to sets of utility classes.
+      A single `.hwc` file can declare mixins and selectors; the HWC compiler expands them into real CSS using HeadWater's base utilities.
+    </p>
+
+    <ul class="list-disc pl-6 text-sm text-gray">
+      <li><strong>Component-first</strong>: declare .btn, .card, or utility mixes once and reuse everywhere.</li>
+      <li><strong>Build-time</strong>: the compiler looks up utilities in your HeadWater base CSS and emits minimal, optimized CSS.</li>
+      <li><strong>Framework-agnostic</strong>: output is plain CSS usable in HTML, React, Vue, SSGs, etc.</li>
+    </ul>
+  </section>
+
+  <!-- SYNTAX QUICK GUIDE -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">Quick Syntax & Examples</h2>
+
+    <p class="text-sm text-gray mb-2"><strong>Basic mapping:</strong> selector = list-of-classes;</p>
+    <pre class="code"><code>.btn = p-2 rounded-full bg-primary text-white;</code></pre>
+
+    <p class="text-sm text-gray mb-2"><strong>Hover / pseudo selectors:</strong></p>
+    <pre class="code"><code>.btn:hover = bg-primary-700;      /* class applied on hover */</code></pre>
+
+    <p class="text-sm text-gray mb-2"><strong>Mixins:</strong> define reusable groups with <code>$name</code></p>
+    <pre class="code"><code>$smallSpacing = m-2 p-2;
+.card = $smallSpacing bg-white rounded shadow-sm;</code></pre>
+
+    <p class="text-sm text-gray mb-2"><strong>Full example (.hwc):</strong></p>
+    <pre class="code"><code>// supreme.hwc
+$small = m-2 p-2
+
+.btn = bg-primary p-2 rounded-full m-2 text-white
+.btn:hover = bg-primary-700
+.input = p-2 border rounded focus:ring-2 focus:ring-primary
+#spaced-div = $small bg-primary-100
+</code></pre>
+
+    <p class="text-sm text-gray">
+      The HWC compiler expands mixins and looks up every utility (like <code>p-2</code>, <code>bg-primary</code>) in your base HeadWater CSS, then emits a minimal .css containing only the used properties.
+    </p>
+  </section>
+
+  <!-- COMPILE -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">How to compile</h2>
+
+    <p class="text-sm text-gray mb-2">Simple CLI usage (when hw tool is installed):</p>
+
+    <pre class="code"><code class="language-bash">
+# Compile supreme.hwc using default base CSS (from HeadWaterGen)
+hw compile supreme.hwc -o supreme.css
+
+# Provide a custom base CSS file
+hw compile supreme.hwc --base path/to/hw-base.css -o supreme.css
+
+# If you want to scan a project and build only used utilities:
+hw scan ./project -o final.css
+    </code></pre>
+
+    <p class="text-sm text-gray">
+      Result: <span class="kbd">supreme.css</span> — a small stylesheet containing only the compiled selectors and properties required by your HWC file.
+    </p>
+  </section>
+
+  <!-- RATIONALE -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">Why use HWC?</h2>
+    <ul class="list-disc pl-6 text-sm text-gray space-y-2">
+      <li><strong>Collaboration:</strong> frontenders and designers can agree on component names (.btn, .card) instead of copying long utility lists.</li>
+      <li><strong>Auditability:</strong> compiler checks utilities against base CSS — safe, traceable mapping.</li>
+      <li><strong>Performance:</strong> compile-time reduction means smaller CSS in production.</li>
+      <li><strong>Portability:</strong> components remain plain HTML + classes — move them across frameworks easily.</li>
+    </ul>
+  </section>
+
+  <!-- HWC PATTERNS -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">Recommended Patterns</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-4 border rounded">
+        <h4 class="font-semibold mb-2">Use mixins for shared groups</h4>
+        <p class="text-sm text-gray mb-2">When many components share the same utility set, define a mixin and reuse it.</p>
+        <pre class="code"><code>$btn-base = p-2 rounded inline-flex items-center;
+.btn-primary = $btn-base bg-primary text-white;
+.btn-outline = $btn-base border text-dark;</code></pre>
+      </div>
+
+      <div class="p-4 border rounded">
+        <h4 class="font-semibold mb-2">Keep selectors explicit</h4>
+        <p class="text-sm text-gray mb-2">HWC supports both class selectors and id selectors. Use `.btn` and `#panel` to keep intent clear.</p>
+        <pre class="code"><code>.panel = p-4 border rounded bg-white;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE PREVIEW (STATIC) -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">Static Preview (manual)</h2>
+    <p class="text-sm text-gray mb-3">
+      You can simulate HWC output quickly by writing the compiled CSS block below (example produced from the HWC above).
+    </p>
+
+    <pre class="code"><code>/* Example output (supreme.css) */
+.btn {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  margin: 0.5rem;
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+.btn:hover { background-color: #1e40af; }
+.input {
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+}
+/* etc. — properties taken from your base hw.css */
+</code></pre>
+  </section>
+
+  <!-- INTEGRATION -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">Integration tips</h2>
+    <ul class="list-disc pl-6 text-sm text-gray space-y-2">
+      <li><strong>Version your compiled CSS:</strong> commit compiled component CSS in a `components/` folder if you want reproducible deployments.</li>
+      <li><strong>Use presets:</strong> keep `hwconf-*.json` presets for Lite/Basic/Extra/Max builds and compile with the same base CSS.</li>
+      <li><strong>Keep mixins small:</strong> mixins are best used for tiny groups (spacing, layout). Don’t replicate huge utility strings inside a mixin.</li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-3">FAQ (short)</h2>
+
+    <details class="mb-2">
+      <summary class="font-medium">Can HWC reference custom utilities?</summary>
+      <div class="mt-2 text-sm text-gray">
+        Yes. HWC resolves any utility class present in the base HeadWater CSS. If a class doesn't exist, the compiler will warn or error depending on your strict mode.
+      </div>
+    </details>
+
+    <details class="mb-2">
+      <summary class="font-medium">Is HWC tied to any JS framework?</summary>
+      <div class="mt-2 text-sm text-gray">No. Output is plain CSS. Consume it in vanilla HTML, React, Vue, Svelte, whatever.</div>
+    </details>
+
+    <details class="mb-2">
+      <summary class="font-medium">Can mixins be recursive?</summary>
+      <div class="mt-2 text-sm text-gray">The compiler detects circular mixin references and reports an error. Keep mixins acyclic.</div>
+    </details>
+  </section>
+
+  <!-- CTA -->
+  <footer class="pt-8 border-t text-center">
+    <p class="mb-4 text-sm text-gray">Ready to author components with HWC?</p>
+    <div class="flex justify-center gap-3">
+      <a class="px-5 py-3 bg-primary text-white rounded hover:bg-blue" href="examples.html">See Examples</a>
+      <a class="px-5 py-3 border rounded hover:bg-dark hover:text-white" href="download.html">Download Builds</a>
+    </div>
+  </footer>
+
+</body>
+</html>
