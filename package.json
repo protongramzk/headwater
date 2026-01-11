@@ -1,6 +1,6 @@
 {
     "name": "@uniantaradev/headwater",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "HeadWater CSS utility generator and compiler",
     "main": "headwater.js",
     "bin": {

@@ -1,12 +1,15 @@
 # HeadWater
 index.html
+examples.html
 download.html
 .npmrc
+output.js
 node_modules/
+hwx.js
 x.py
 hw.js
 final.css
 headwater.css
 hwconf.json
 .gitignore
-
+test.html

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://headwatercss.dev/schema/hwconf.json",
+
+  "colorMap": {
+    "primary": "#3b82f6",
+    "secondary": "#8b5cf6",
+    "success": "#10b981",
+    "warning": "#f59e0b",
+    "danger": "#ef4444",
+    "light": "#f8fafc",
+    "dark": "#0f172a"
+  },
+
+  "ignore": [
+    "animations",
+    "filters",
+    "gradients",
+    "media"
+  ],
+
+  "typography": {
+    "only": [
+      "font-size",
+      "font-weight",
+      "line-height",
+      "text-align"
+    ]
+  },
+
+  "typographyExtended": false,
+
+  "ring": {
+    "only": ["base", "ring-width", "ring-color"],
+    "widths": [0, 2]
+  },
+
+  "interactive": {
+    "only": ["hover", "active", "focus"]
+  },
+
+  "minify": true,
+  "comments": false
+}

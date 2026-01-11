@@ -1,0 +1,39 @@
+{
+  "$schema": "https://headwatercss.dev/schema/hwconf.json",
+
+  "colorMap": "default",
+
+  "ignore": [
+    "animations"
+  ],
+
+  "typography": true,
+
+  "typographyExtended": {
+    "only": [
+      "letter-spacing",
+      "text-transform",
+      "text-overflow",
+      "white-space",
+      "word-break"
+    ]
+  },
+
+  "ring": {
+    "widths": [0, 2, 4],
+    "defaultOpacity": 0.4
+  },
+
+  "interactive": {
+    "only": [
+      "hover",
+      "focus",
+      "focus-visible",
+      "active"
+    ],
+    "groupHover": true
+  },
+
+  "minify": true,
+  "comments": false
+}

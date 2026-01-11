@@ -1,0 +1,38 @@
+{
+  "$schema": "https://headwatercss.dev/schema/hwconf.json",
+
+  "colorMap": {
+    "primary": "#3b82f6",
+    "secondary": "#8b5cf6",
+    "light": "#f8fafc",
+    "dark": "#020617"
+  },
+
+  "ignore": [
+    "animations",
+    "filters",
+    "gradients",
+    "media",
+    "grid",
+    "flex-gap",
+    "effects"
+  ],
+
+  "typography": {
+    "only": [
+      "font-size",
+      "font-weight"
+    ],
+    "fontWeightNumeric": false
+  },
+
+  "typographyExtended": false,
+  "ring": false,
+
+  "interactive": {
+    "only": ["active"]
+  },
+
+  "minify": true,
+  "comments": false
+}

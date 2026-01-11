@@ -1,0 +1,17 @@
+{
+  "$schema": "https://headwatercss.dev/schema/hwconf.json",
+
+  "colorMap": "default",
+
+  "typography": true,
+  "typographyExtended": true,
+  "ring": true,
+
+  "interactive": {
+    "groupHover": true,
+    "darkMode": true
+  },
+
+  "minify": false,
+  "comments": true
+}
